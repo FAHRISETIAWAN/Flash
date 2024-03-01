@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>VisionPad </title>
+    <link rel="icon" type="image/x-icon" href="./collapsible-menu/assets/img/vr.png"/>
+    <link href="./layouts/collapsible-menu/css/light/loader.css" rel="stylesheet" type="text/css" />
+    <link href="./layouts/collapsible-menu/css/dark/loader.css" rel="stylesheet" type="text/css" />
+    <script src="./layouts/collapsible-menu/loader.js"></script>
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="./src/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="./layouts/collapsible-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="./layouts/collapsible-menu/css/dark/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link href="./src/plugins/src/apex/apexcharts.css" rel="stylesheet" type="text/css">
+    <link href="./src/assets/css/light/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
+    <link href="./src/assets/css/dark/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+
+    <link rel="stylesheet" href="./collapsible-menu/assets/css/style.css">
+
+    <!-- Background Bergerak -->
+    <!-- <link href="./background/style.css" rel="stylesheet" type="text/css">
+    <script src="./background/script.js"></script> -->
+
+</head>
+<style>
+    .bg {
+        animation:slide 3s ease-in-out infinite alternate;
+        background-image: linear-gradient(-60deg, #4f514f 50%, #16181a 50%);
+        bottom:0;
+        left:-50%;
+        opacity:.5;
+        position:fixed;
+        right:-50%;
+        top:0;
+        z-index:-1;
+    }
+
+    .bg2 {
+        animation-direction:alternate-reverse;
+        animation-duration:4s;
+    }
+
+    .bg3 {
+        animation-duration:5s;
+    }
+
+    @keyframes slide {
+        0% {
+            transform:translateX(-25%);
+        }
+        100% {
+            transform:translateX(25%);
+        }
+    }
+</style>
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+<body class="layout-boxed alt-menu">
+    <!-- BEGIN LOADER -->
+    <div id="load_screen"> <div class="loader"> <div class="loader-content">
+        <div class="spinner-grow align-self-center"></div>
+    </div></div></div>
+    <!--  END LOADER -->
+
+    <!--  BEGIN NAVBAR  -->
+    <div class="header-container container-xxl">
+        <header class="header navbar navbar-expand-sm expand-header">
+
+            <a href="javascript:void(0);" class="sidebarCollapse">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </a>
+
+            <div class="search-animated toggle-search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <form class="form-inline search-full form-inline search" role="search">
+                    <div class="search-bar">
+                        <input type="text" class="form-control search-form-control  ml-lg-auto" placeholder="Search...">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x search-close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </div>
+                </form>
+                <span class="badge badge-secondary">Ctrl + /</span>
+            </div>
+
+            <ul class="navbar-item flex-row ms-lg-auto ms-0">
+
+          
+
+                <li class="nav-item theme-toggle-item">
+                    <a href="javascript:void(0);" class="nav-link theme-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon dark-mode"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun light-mode"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    </a>
+                </li>
+
+                
+
+                <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
+                    <a href="" class="btn ml-lg-auto btn-bordered-white"><i class="icon-wallet mr-md-2"></i> Connect</a>             
+                </li>   
+            </ul>
+        </header>
+    </div>
+    <!--  END NAVBAR  -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <!--  BEGIN SIDEBAR  -->
+        <div class="sidebar-wrapper sidebar-theme">
+
+            <nav id="sidebar">
+
+                <div class="navbar-nav theme-brand flex-row  text-center">
+                    <div class="nav-logo">
+                        <div class="nav-item theme-logo">
+                            <a href="">
+                                <img src="./collapsible-menu//assets/img/vr.png"  alt="logo">
+                            </a>
+                        </div>
+                        <div class="nav-item theme-text">
+                            <a href="" class="nav-link"> VisionPad </a>
+                        </div>
+                    </div>
+                    <div class="nav-item sidebar-toggle">
+                        <div class="btn-toggle sidebarCollapse">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-left"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="shadow-bottom"></div>
+                <ul class="list-unstyled menu-categories" id="accordionExample">
+                    <li class="menu active">
+                        <a href="#dashboard" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                            <div class="./index.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                <span>Dashboard</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled show" id="dashboard" data-bs-parent="#accordionExample">
+                            <li class="active">
+                                <a href=""> About </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu menu-heading">
+                        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>APPLICATIONS</span></div>
+                    </li>
+
+                     <li class="menu">
+                        <a href="#elements" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                <span>Launchpad</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </a>
+
+                        <ul class="collapse submenu list-unstyled" id="elements" data-bs-parent="#accordionExample">
+                            <li>
+                                <a href="./createlaunchpad.html" > Create Launchpad </a>
+                            </li>
+                            <li>
+                                <a href="./fairlaunch.html" > Create Fairlaunch </a>
+                            </li>
+                            <li>
+                                <a href="./lists.html" > Launchpad Lists </a>
+                            </li>
+                         
+                        </ul>
+
+                    </li>
+
+                    <li class="menu">
+                        <a href="#authentication" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                <span>Lock</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled" id="authentication" data-bs-parent="#accordionExample">
+                            <li>
+                                <a href="./tokenlocker.html" > Create Lock </a>
+                            </li>
+                            <li>
+                                <a href="./token.html" > Token </a>
+                            </li>
+
+                         
+                        </ul>
+                    </li>
+                    
+                    <li class="menu">
+                        <a href="#components" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                                <span>Mint Token</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled" id="components" data-bs-parent="#accordionExample">
+                            <li>
+                                <a href="./createtoken.html"> Create Token </a>
+                            </li>
+                        
+                        </ul>
+                    </li>
+                    
+                    
+                    <li class="menu">
+                        <a href="#pages" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                           <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg>
+                                <span>Airdrop</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled" id="pages" data-bs-parent="#accordionExample">
+                            <li>
+                                <a href="" > Create Airdrop </a>
+                            </li>
+                            <li>
+                                <a href="" > Airdrop List </a>
+                            </li>
+                        </ul>
+                    </li>
+
+    
+
+                    <li class="menu">
+                        <a href="#users" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                <span>Staking</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled" id="users" data-bs-parent="#accordionExample">
+                            <li>
+                                <a href=""> Create Staking </a>
+                            </li>
+                            <li>
+                                <a href=""> Staking List  </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu">
+                        <a href="" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                                <span>Private Sale</span>
+                            </div>    
+                        </a>
+                    </li>
+
+
+
+                    <li class="menu">
+                        <a href="" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                                <span>Bridge</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    
+                    
+
+                    <li class="menu">
+                        <a href="" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                <span>Pools Alert</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="menu">
+                        <a href="" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                                <span>KYC & Audit</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="menu">
+                        <a href="" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                <span>Docs</span>
+                            </div>
+                        </a>
+                    </li>
+
+         
+                
+
+                    <li class="menu">
+                        <a  href="https://t.me/visionpad" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-hash"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                                <span>Telegram</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="menu">
+                        <a  href="https://twitter.com/visionpad_ofc" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-hash"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                                <span>Twitter</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="menu">
+                        <a  href="https://doc.visionpad.tech/" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-hash"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                                <span>Gitbook</span>
+                            </div>
+                        </a>
+                    </li>            
+                </ul>
+                
+            </nav>
+
+        </div>
+        <!--  END SIDEBAR  -->
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            <div class="layout-px-spacing">
+
+                <div class="middle-content container-xxl p-0">
+
+                    <div class="row layout-top-spacing">
+
+                        <section class="hero-section" id="about">
+                            <div class="container">
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="col-12 col-md-6 col-lg-9 text-center">
+                                        <!-- Hero Content -->
+                                        <div class="hero-content">
+                                            <div class="intro text-center mb-5">
+                                                <div class="wrapper-animation">
+                                                    <div class="blockchain-wrapper">
+                                                        <div class="cube">
+                                                            <div class="side"></div>
+                                                            <div class="side"></div>
+                                                            <div class="side"></div>
+                                                            <div class="side"></div>
+                                                            <div class="side"></div>
+                                                            <div class="side"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                             
+                                                <h1 class="mt-4">VisionPad</h1>
+                                           
+                                            </div>
+                                            <!-- Buttons -->
+                                            <div class="button-group">
+                                                <a class="btn btn-bordered-white" href=""><i class="icon-rocket mr-2"></i>Claim Rewards</a>
+                                                <a class="btn btn-bordered-white" href=""><i class="icon-note mr-2">Launchpad</i></a>
+                                            </div>
+                                            <!--<p style="padding-top: 50px;">Official Contract Address: 0x5483DC6abDA5F094865120B2D251b5744fc2ECB5</p>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="work-area" >
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-12 col-md-6 ">
+                                        <div class="content intro">
+                                            <h2>Vision Pad : Towards the Future </h2>
+                                            <p>Vision PAD is an avant-garde launchpad specifically tailored for projects in the blockchain and cryptocurrency space. This platform is designed to be a catalyst for the development and launch of innovative decentralized applications, blockchain solutions, and crypto-based initiatives. Embracing the dynamic nature of the blockchain industry, Vision PAD is dedicated to fostering an environment where disruptive ideas and groundbreaking technologies can flourish.</p> 
+                                            
+                                            <ul class="list-unstyled items mt-5">
+                    
+                                            </ul>
+                                        </div>
+                                    </div>  
+                                    <div class="col-12 col-md-6 text-right">
+                                        <!-- Add custom class for styling and enlarge the image -->
+                                        <img src="./collapsible-menu/assets/img/ai4.png" style="width: 300%;">
+                                    </div>                          
+                                </div>                     
+                            </div>
+                        </section>
+                        
+                        <section class="work-area" >
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <!-- Intro -->
+                                        <div class="intro d-flex justify-content-between align-items-end mb-4">
+                                            <div class="intro-content">
+                                                <span class="intro-text">How It Works</span>
+                                                <h3 class="mt-3 mb-0">How To Participate</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row items">
+                                    <div class="col-md-4 col-xs-12 item">
+                                        <!-- Single Work -->
+                                        <div class="single-work">
+                                            <i class="icons icon-wallet text-effect"></i>
+                                            <h4>Decentralized</h4>
+                                            <p>Seamlessly operate within a fully decentralized ecosystem that ensures autonomy and security through blockchain technology.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-xs-12 item">
+                                        <!-- Single Work -->
+                                        <div class="single-work">
+                                            <i class="icons icon-note  text-effect"></i>
+                                            <h4>Transparency</h4>
+                                            <p>Every transaction is transparent, with a clear tax mechanism that contributes to the stability and growth of the Tao ecosystem.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-xs-12 item">
+                                        <!-- Single Work -->
+                                        <div class="single-work">
+                                            <i class="icons icon-fire text-effect"></i>
+                                            <h4>Bridge</h4>
+                                            <p>Powered by LayerZero, VisionPad established the first bridge for TAO from Ethereum to other EVM chains.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-xs-12 item">
+                                        <!-- Single Work -->
+                                        <div class="single-work">
+                                            <i class="icons icon-drawer text-effect"></i>
+                                            <h4>Synergy</h4>
+                                            <p>Designed to work in harmony with the BitTensor network, creating a symbiotic relationship that propels decentralized Al.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-xs-12 item">
+                                        <!-- Single Work -->
+                                        <div class="single-work">
+                                            <i class="icons icon-rocket text-effect"></i>
+                                            <h4>Launchpad</h4>
+                                            <p>Gain entry to a world of opportunities with our native launchpad, a springboard for innovative projects targeting the Tao ecosystem.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-xs-12 item">
+                                        <!-- Single Work -->
+                                        <div class="single-work">
+                                            <i class="icons icon-user text-effect"></i>
+                                            <h4>Governance</h4>
+                                            <p>Engage in a platform where your voice matters, with community-driven governance allowing token holders to steer the project's trajectory.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="work-area" >
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-12 col-md-6 ">
+                                        <div class="content intro">
+                                            <span class="intro-text">Project</span>
+                                            <h2>$VisionPad <br/>
+                                                Tokenomics</h2>
+                                            <p>$VPAD's total supply is 1,000,000 tokens, with only ever ~ 900,000 circulating
+                                                With every buy and sell of $VPAD a 4% fee is collected in $ETH.</p> 
+                                                
+                                                <p> 20% of the tax is immediately distributed to $VPAD holders. The remaining 80% is used to do buybacks as determined by governance, benefiting $VPAD holders. 
+                                                Governance has the prerogative to change this anytime</p>
+                                            <ul class="list-unstyled items mt-5">
+                    
+                                            </ul>
+                                        </div>
+                                    </div>  
+                                    <div class="col-12 col-md-6">
+                                        <!-- Blockchain Animation -->
+                                        <div class="wrapper-animation">
+                                            <div class="blockchain-wrapper">
+                                                <div class="pyramid">
+                                                    <div class="square">
+                                                        <div class="triangle"></div>
+                                                        <div class="triangle"></div>
+                                                        <div class="triangle"></div>
+                                                        <div class="triangle"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="pyramid inverse">
+                                                    <div class="square">
+                                                        <div class="triangle"></div>
+                                                        <div class="triangle"></div>
+                                                        <div class="triangle"></div>
+                                                        <div class="triangle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                 
+                                </div>                     
+                            </div>
+                        </section>
+
+                        <section class="who_we_are_section position-relative">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="who_we_are_left_content" data-aos="fade-up">
+                                            <h2 class="text-white">Revenue streams</h2>
+                                            <p>VisionPad holders get rewarded from all the below revenue streams</p>
+                                            <div class="btn_wrapper"> 
+                                                <a class="text-decoration-none default-btn-two btn-size-18 hover-effect" href="">Get Started<i class="fa-solid fa-angle-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12"></div>
+                                   
+                                </div>
+                                <figure class="who_we_are_image position-absolute mb-0">
+                                    <img src="./collapsible-menu/assets/img/content/ai2.png" alt="" class="img-fluid">
+                                </figure>
+                                <figure class="who_we_are_left_shape mb-0 position-absolute top_bottom_shape">
+                                    <img src="./collapsible-menu/assets/img/content/who_we_are_left_shape.png" alt="" class="img-fluid">
+                                </figure>
+                                <figure class="who_we_are_right_shape mb-0 position-absolute top_bottom_shape">
+                                    <img src="./collapsible-menu/assets/img/content/who_we_are_right_shape.png" alt="" class="img-fluid">
+                                </figure>
+                            </div>
+                        </section>
+
+                        <section class="work-area">
+                            <div class="container">
+                                <div class="row">
+                                    <h2 class="title_spectial">Community Strategy</h2>
+                                </div><!-- END CONTAINER  -->
+                                </div>
+                                <div class="row items">
+                                    <div class="col-md-6 col-xs-12">
+                                        <!-- Single Work -->
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <i class="icons icon-wallet text-effect"></i>
+                                                <h4> Building a Strong Community</h4>
+                                                <p>Foundation of $VisionPad: The community is the backbone of VisionPad, fostering an environment of support, engagement, and shared growth.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <!-- Single Work -->
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <i class="icons icon-fire text-effect"></i>
+                                                <h4>Involvement and Rewards</h4>
+                                                <p>Community Governance: Emphasizing decentralized governance, where the community has a say in key decision through a voting mechanism.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <!-- Single Work -->
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <i class="icons icon-note text-effect"></i>
+                                                <h4>Interactive Platforms and Communication</h4>
+                                                <p>Forums and Social Media: Dedicated forums and social media channels are established for real-time interactions, updates, and discussion among community members.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-xs-12">
+                                        <!-- Single Work -->
+                                        <div class="card custom-card">
+                                            <div class="card-body">
+                                                <i class="icons icon-drawer text-effect"></i>
+                                                <h4> Educational Initiatives</h4>
+                                                <p>Educational Content: Providing resources and educational content to help community members understand the technicalities of $VisionPad and the broader crypto and AI market.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+
+                        <section id="faq" class="faq1-area">
+                            <div class="container">
+                                <h2 class="title_spectial">Frequently Asked Questions</h2>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-10 col-12">
+                                        <div class="accordion" id="accordionExample">
+                                          <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingOne">
+                                              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                What is $VisionPad ?
+                                              </button>
+                                            </h2>
+                                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                              <div class="accordion-body">
+                                                VisionPad is a cryptocurrency protocol building DeFi for the ETH network's native token, $VisionPad.
+                                              </div>
+                                            </div>
+                                          </div><!-- END ACCORDION ITEM  -->
+                                          <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingTwo">
+                                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                How does VisionPad work ?
+                                              </button>
+                                            </h2>
+                                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                              <div class="accordion-body">
+                                                VisionPad rewards its community with a portion of taxes collected, doing buybacks, airdropping tokens of launchpad projects and distributing bridge fees to $VisionPad holders
+                                              </div>
+                                            </div>
+                                          </div><!-- END ACCORDION ITEM  -->
+                                          <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingThree">
+                                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                What is the total supply of $VisionPad ?
+                                              </button>
+                                            </h2>
+                                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                              <div class="accordion-body">
+                                                The total supply is capped at 1 million tokens. However, $VPAD, the rest has been burned.
+                                                       
+                                              </div>
+                                            </div>
+                                          </div><!-- END ACCORDION ITEM  -->
+                                          <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingFour">
+                                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                How can I participate in the VisionPad Launchpad ?
+                                              </button>
+                                            </h2>
+                                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                              <div class="accordion-body">
+                                                Hold $VisionPad tokens to receive a share from every token launch on the VisionPad Launchpad.
+                                                Or invest with $VPAD or ETH into sales you are interested in.
+                      
+                                              </div>
+                                            </div>
+                                          </div><!-- END ACCORDION ITEM  -->
+                                          <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingFive">
+                                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                Where can I see my $VisionPad tokens ?
+                                              </button>
+                                            </h2>
+                                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                                              <div class="accordion-body">
+                                                $VisionPad balances and rewards can be seen at https://earn.VisionPad.app or by adding the $VisionPad token to your Wallet.
+                                              </div>
+                                            </div>
+                                          </div><!-- END ACCORDION ITEM  -->		
+                                          <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingFive">
+                                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                How can I be a part of the VisionPad community ?
+                                              </button>
+                                            </h2>
+                                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                                              <div class="accordion-body">
+                                                Engage with the community through our forums, social media channels, and participate in governance voting.
+                                              </div>
+                                            </div>
+                                          </div><!-- END ACCORDION ITEM  -->		
+                                          <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingFive">
+                                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                Where can I find more information about VisionPad ?
+                                              </button>
+                                            </h2>
+                                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                                              <div class="accordion-body">
+                                                You are more than welcome to hop into our TG channel and talk to our team directly.
+                                              </div>
+                                            </div>
+                                          </div><!-- END ACCORDION ITEM  -->		
+                                        </div>						
+                                    </div><!-- END COL  -->					
+                                </div><!--END  ROW  -->
+                            </div><!-- END CONTAINER  -->
+                        </section>
+
+                        <footer class="footer-area">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 col-md-8 text-center">
+                                        <!-- Footer Items -->
+                                        <div class="footer-items">
+                                            <!-- Logo -->
+                            
+                                            <!-- Social Icons -->
+                                            <div class="social-icons d-flex justify-content-center my-4">
+                                                <a class="facebook" href="" >
+                                                    <img src="./collapsible-menu/assets/img/logo/tik.png" alt="">
+                                                
+                                                </a>
+                                                <a class="twitter" href="https://twitter.com/visionpad_ofc" >
+                                                    <img src="./collapsible-menu/assets/img/logo/tw.png" alt="">
+                                                </a>
+                                                <a class="linkedin" href=" https://medium.com/@visionpadofc/vision-pad-towards-the-future-dd5b1ccfd5d7" >
+                                                    <img src="./collapsible-menu/assets/img/logo/medium.png" alt="">
+                                                </a>
+                                                <a class="reddit" href="https://doc.visionpad.tech/" >
+                                                    <img src="./collapsible-menu/assets/img/logo/wh.png" alt="">
+                                                </a>
+                                                <a class="vkontakte" href="" >
+                                                    <img src="./collapsible-menu/assets/img/logo/git.png" alt="">
+                                                </a>
+                                                <a class="youtube" href="" >
+                                                    <img src="./collapsible-menu/assets/img/logo/yt.png" alt="">
+                                                </a>
+                                            </div>
+                            
+                                            <!-- Copyright Area -->
+                                            <div class="copyright-area py-4">&copy;2024, All Rights Reserved By <a href="" >VisionPad </a></div>
+                                        </div>
+                                        <!-- Scroll To Top -->
+                                        <div id="scroll-to-top" class="scroll-to-top">
+                                            <a href="#about" class="smooth-anchor">
+                                                <i class="fa-solid fa-arrow-up"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+            <!--  BEGIN FOOTER  -->
+ 
+            <!--  END FOOTER  -->
+        </div>
+        <!--  END CONTENT AREA  -->
+
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="./src/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="./src/plugins/src/mousetrap/mousetrap.min.js"></script>
+    <script src="./src/plugins/src/waves/waves.min.js"></script>
+    <script src="./layouts/collapsible-menu/app.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    <script src="./src/plugins/src/apex/apexcharts.min.js"></script>
+    <script src="./src/assets/js/dashboard/dash_1.js"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+    
+        <!-- jQuery(necessary for all JavaScript plugins) -->
+        <script src="./collapsible-menu/assets/js/main.js"></script>
+
+        <!-- Bootstrap js -->
+        <script src="./collapsible-menu/assets/js/vendor/popper.min.js"></script>
+        <script src="./collapsible-menu/assets/js/vendor/bootstrap.min.js"></script>
+    
+        <!-- Plugins js -->
+        <script src="./collapsible-menu/assets/js/vendor/all.min.js"></script>
+        <script src="./collapsible-menu/js/vendor/gallery.min.js"></script>
+        <script src="./collapsible-menu/js/vendor/slider.min.js"></script>
+        <script src="./collapsible-menu/js/vendor/countdown.min.js"></script>
+        <script src="./collapsible-menu/assets/js/vendor/shuffle.min.js"></script>
+    
+        <!-- Active js -->
+        <script src="./collapsible-menu/assets/js/main.js"></script>
+
+</body>
+</html>
